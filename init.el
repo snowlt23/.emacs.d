@@ -74,6 +74,8 @@
         auto-indent-mode
 
         nim-mode ; Nim
+        
+        clojure-mode ; Carp
         ))
 
 (dolist (package my-install-packages)
@@ -162,3 +164,7 @@
 (setq c-default-style "bsd"
       c-basic-offset 4)
 (sp-local-pair 'c-mode "{" nil :post-handlers '((my-create-newline-and-enter-sexp "RET")))
+
+;;; Carp
+(require 'carp-mode)
+
