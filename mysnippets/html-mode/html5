@@ -1,0 +1,14 @@
+# -*- mode: snippet -*-
+# name: html5
+# key: html5
+# --
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title lang="ja">$1</title>
+</head>
+<body>
+    $1
+</body>
+</html>

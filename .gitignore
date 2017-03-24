@@ -1,0 +1,12 @@
+﻿
+.mc-lists.el
+smex-items
+ido.last
+
+/elpa/*
+!elpa/empty.txt
+
+/auto-save-list/*
+!auto-save-list/empty.txt
+/backups/*
+!backups/empty.txt
