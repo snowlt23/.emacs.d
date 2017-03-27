@@ -11,6 +11,9 @@
 (cua-mode t)
 (setq cua-enable-cua-keys nil)
 
+;; scrollbar
+(scroll-bar-mode 0)
+
 ;; tab
 (setq-default tab-width 4
               indent-tabs-mode nil)
