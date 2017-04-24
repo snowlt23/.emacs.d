@@ -33,10 +33,6 @@
 ;; font
 ;; (set-face-attribute 'default nil :family "MyricaM M" :height 120)
 
-;; move window bind to "C-u"
-(define-key global-map (kbd "C-u") 'other-window)
-(global-set-key (kbd "C-a") 'back-to-indentation)
-
 ;; add load path
 (add-to-list 'load-path "~/.emacs.d/elisp")
 

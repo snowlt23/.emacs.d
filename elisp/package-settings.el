@@ -13,8 +13,7 @@
 (setq ido-enable-flex-matching t)
 (setq ido-vertical-define-keys 'C-n-and-C-p-only)
 (require 'smex)
-(global-set-key (kbd "M-x")
-		'smex)
+(global-set-key (kbd "M-q") 'smex)
 
 ;;; multi cursor with smartrep
 (require 'multiple-cursors)
@@ -44,7 +43,7 @@
 
 ;;; undotree
 (require 'undo-tree)
-(define-key global-map (kbd "C-x u") 'undo-tree-visualize)
+(define-key global-map (kbd "C-q u") 'undo-tree-visualize)
 
 ;;; smartparens
 (require 'smartparens-config)
@@ -72,8 +71,8 @@
 (setq company-backends (mapcar #'company-mode/backend-with-yas company-backends))
 
 ;;; Nim
-(setq nim-nimsuggest-path "~/github/Nim/bin/nimsuggest")
-(add-hook 'nim-mode-hook 'nimsuggest-mode)
+;; (setq nim-nimsuggest-path "~/github/Nim/bin/nimsuggest")
+;; (add-hook 'nim-mode-hook 'nimsuggest-mode)
 (add-hook 'nim-mode-hook 'company-mode)
 (add-hook 'nimscript-mode-hook 'company-mode)
 ;; (add-to-list 'auto-indent-multiple-indent-modes 'nim-mode)

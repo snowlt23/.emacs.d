@@ -14,5 +14,3 @@
 (install 'auto-indent-mode)
 
 (install 'nim-mode)
-
-(load "red.el")
