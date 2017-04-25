@@ -1,9 +1,12 @@
 
 ;; dvorak
+(setq local-function-key-map (delq '(kp-tab . [9]) local-function-key-map))
+
 (global-set-key (kbd "C-q") nil)
 (global-set-key (kbd "C-x") nil)
 
 (global-set-key (kbd "C-i") 'keyboard-quit)
+(global-set-key (kbd "C-z") 'undo)
 
 (global-set-key (kbd "C-p") 'previous-line)
 (global-set-key (kbd "C-b") 'next-line)
@@ -12,6 +15,7 @@
 (global-set-key (kbd "C-a") 'back-to-indentation)
 (global-set-key (kbd "C-.") 'move-end-of-line)
 (global-set-key (kbd "C-e") 'delete-char)
+(global-set-key (kbd "<tab>") 'indent-according-to-mode)
 
 (global-set-key (kbd "C-,") 'kill-region)
 (global-set-key (kbd "M-,") 'kill-ring-save)
