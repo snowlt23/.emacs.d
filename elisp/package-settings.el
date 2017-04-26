@@ -11,9 +11,17 @@
 (ido-mode t)
 (ido-vertical-mode 1)
 (setq ido-enable-flex-matching t)
-(setq ido-vertical-define-keys 'C-n-and-C-p-only)
 (require 'smex)
 (global-set-key (kbd "M-q") 'smex)
+
+(defun ido-my-keys ()
+  (define-key ctl-x-map (kbd "C-i") 'keyboard-escape-quit)
+  (define-key ido-completion-map (kbd "C-i") 'keyboard-escape-quit)
+  (define-key ido-completion-map (kbd "C-b") 'ido-next-match)
+  (define-key ido-completion-map (kbd "C-p") 'ido-prev-match)
+  (define-key ido-completion-map (kbd "<up>") 'ido-prev-match)
+  (define-key ido-completion-map (kbd "<down>") 'ido-next-match))
+(add-hook 'ido-setup-hook 'ido-my-keys)
 
 ;;; multi cursor with smartrep
 (require 'multiple-cursors)
@@ -39,7 +47,6 @@
     ("i" . 'mc/insert-numbers)
     ("o" . 'mc/sort-regions)
     ("O" . 'mc/reverse-regions)))
-
 
 ;;; undotree
 (require 'undo-tree)

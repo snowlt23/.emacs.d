@@ -32,5 +32,9 @@
 (global-set-key (kbd "C-q 2") 'split-window-below)
 (global-set-key (kbd "C-q 3") 'split-window-right)
 
+;; isearch
+(global-set-key (kbd "C-o") 'isearch-forward)
+(define-key isearch-mode-map (kbd "C-i") 'isearch-abort)
+
 ;; move window bind to "C-u"
 (global-set-key (kbd "C-g") 'other-window)
