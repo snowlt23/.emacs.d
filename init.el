@@ -18,6 +18,10 @@
 (setq-default tab-width 4
               indent-tabs-mode nil)
 
+;; move window bind to "C-u"
+(global-set-key (kbd "C-u") 'other-window)
+(global-set-key (kbd "C-a") 'back-to-indentation)
+
 ;; menu and tool bar
 (menu-bar-mode -1)
 (tool-bar-mode -1)
@@ -91,3 +95,4 @@
       (write-region "" nil "~/.emacs.d/isinstalled")))
 (load "package-settings.el")
 
+;; (load "dvorak.el")

@@ -5,6 +5,9 @@
 (setq company-idle-delay 0.4)
 (setq company-minimum-prefix-length 2)
 
+;;; flycheck
+(global-flycheck-mode)
+
 ;;; ido
 (require 'ido)
 (require 'ido-vertical-mode)
@@ -12,16 +15,8 @@
 (ido-vertical-mode 1)
 (setq ido-enable-flex-matching t)
 (require 'smex)
-(global-set-key (kbd "M-q") 'smex)
-
-(defun ido-my-keys ()
-  (define-key ctl-x-map (kbd "C-i") 'keyboard-escape-quit)
-  (define-key ido-completion-map (kbd "C-i") 'keyboard-escape-quit)
-  (define-key ido-completion-map (kbd "C-b") 'ido-next-match)
-  (define-key ido-completion-map (kbd "C-p") 'ido-prev-match)
-  (define-key ido-completion-map (kbd "<up>") 'ido-prev-match)
-  (define-key ido-completion-map (kbd "<down>") 'ido-next-match))
-(add-hook 'ido-setup-hook 'ido-my-keys)
+(global-set-key (kbd "M-x") 'smex)
+(setq ido-vertical-define-keys 'C-n-C-p-up-and-down)
 
 ;;; multi cursor with smartrep
 (require 'multiple-cursors)
@@ -50,7 +45,7 @@
 
 ;;; undotree
 (require 'undo-tree)
-(define-key global-map (kbd "C-q u") 'undo-tree-visualize)
+(define-key global-map (kbd "C-x u") 'undo-tree-visualize)
 
 ;;; smartparens
 (require 'smartparens-config)
@@ -77,12 +72,23 @@
             '(:with company-yasnippet))))
 (setq company-backends (mapcar #'company-mode/backend-with-yas company-backends))
 
+;;; Common Lisp
+(setq inferior-lisp-program "ros run")
+(require 'slime)
+(slime-setup '(slime-repl slime-fancy slime-banner slime-company)) 
+
 ;;; Nim
-;; (setq nim-nimsuggest-path "~/github/Nim/bin/nimsuggest")
-;; (add-hook 'nim-mode-hook 'nimsuggest-mode)
+(require 'nim-mode)
+(setq nim-nimsuggest-path (expand-file-name "~/github/Nim/bin/nimsuggest.exe"))
+(add-hook 'nim-mode-hook 'nimsuggest-mode)
 (add-hook 'nim-mode-hook 'company-mode)
 (add-hook 'nimscript-mode-hook 'company-mode)
 ;; (add-to-list 'auto-indent-multiple-indent-modes 'nim-mode)
+
+;;; Factor
+(require 'factor-mode)
+(setq fuel-listener-factor-binary "C:/Installs/factor/factor.exe")
+(setq fuel-listener-factor-image "C:/Installs/factor/factor.image")
 
 ;;; C
 (setq c-default-style "bsd"
