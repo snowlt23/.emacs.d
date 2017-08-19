@@ -5,7 +5,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (yasnippet undo-tree smex smartrep smartparens slime-company nim-mode multiple-cursors ido-vertical-mode fuel auto-indent-mode))))
+    (extempore-mode yasnippet undo-tree smex smartrep smartparens slime-company racket-mode nim-mode multiple-cursors ido-vertical-mode hy-mode fuel clojure-mode auto-indent-mode))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
