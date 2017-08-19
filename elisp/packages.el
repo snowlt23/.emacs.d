@@ -9,7 +9,6 @@
 (install 'multiple-cursors)
 (install 'smartrep)
 (install 'undo-tree)
-(install 'smartparens)
 (install 'flycheck)
 (install 'yasnippet)
 (install 'auto-indent-mode)

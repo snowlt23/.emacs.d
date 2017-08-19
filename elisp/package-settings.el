@@ -47,16 +47,6 @@
 (require 'undo-tree)
 (define-key global-map (kbd "C-x u") 'undo-tree-visualize)
 
-;;; smartparens
-(require 'smartparens-config)
-(smartparens-global-mode t)
-(setq sp-highlight-pair-overlay nil)
-(defun my-create-newline-and-enter-sexp (&rest _ignored)
-  (newline)
-  (indent-according-to-mode)
-  (forward-line -1)
-  (indent-according-to-mode))
-
 ;;; yasnippet
 (require 'yasnippet)
 (setq yas-snippet-dirs
@@ -93,4 +83,4 @@
 ;;; C
 (setq c-default-style "bsd"
       c-basic-offset 4)
-(sp-local-pair 'c-mode "{" nil :post-handlers '((my-create-newline-and-enter-sexp "RET")))
+(electric-pair-mode t)
