@@ -94,5 +94,3 @@
       (install-packages)
       (write-region "" nil "~/.emacs.d/isinstalled")))
 (load "package-settings.el")
-
-;; (load "dvorak.el")
