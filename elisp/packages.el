@@ -17,3 +17,5 @@
 (install 'slime-company)
 (install 'nim-mode)
 (install 'fuel)
+
+(load "flori-mode")
