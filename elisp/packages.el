@@ -7,3 +7,5 @@
 (install 'multiple-cursors)
 (install 'smartrep)
 (install 'undo-tree)
+
+(load "flori-mode")
