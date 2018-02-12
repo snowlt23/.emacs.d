@@ -7,5 +7,6 @@
 (install 'multiple-cursors)
 (install 'smartrep)
 (install 'undo-tree)
+(install 'nim-mode)
 
 (load "flori-mode")
