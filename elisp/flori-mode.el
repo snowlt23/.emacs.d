@@ -1,23 +1,22 @@
 
 (setq flori-ident "\\(\\([a-z]\\|[A-Z]\\)\\([a-z]\\|[A-Z]\\|[0-9]\\|_\\)*?\\)")
-(setq flori-separates "\\((\\|)\\|[\\|]\\|\s\\|\n\\|\r\\|,\\)")
+(setq flori-separates "\\((\\|)\\|\\[\\|\\]\\|\s\\|\n\\|\r\\|,\\)")
 
-(setq flori-keywords '("match" "if" "elif" "else" "cond" "for" "while" "import" "destructor" "return"))
+(setq flori-keywords '("match" "if" "elif" "else" "for" "while" "import" "return" "init"))
+(setq flori-attrs '("destructor"))
+(setq flori-defs "\\(fn\\|type\\|macro\\|syntax\\)")
 
 (setq flori-keywords-regexp (regexp-opt flori-keywords 'words))
 (setq flori-def-regexp (concat flori-ident "\s*:=\s*"))
-(setq flori-defn-regexp (concat "\\(fn\\)\s" "\\(.+?\\)" flori-separates))
-(setq flori-deftype-regexp (concat "\\(type\\)\s" "\\(.+?\\)" flori-separates))
-(setq flori-type-regexp (concat "\\([A-Z]\\([a-z]\\|[A-Z]\\|[0-9]\\)*?\\)" flori-separates))
-(setq flori-attr-regexp (concat flori-ident "\:" flori-separates))
+(setq flori-def-regexp (concat flori-defs "\s\\(.+?\\)" flori-separates))
+(setq flori-type-regexp (concat "\\([A-Z]\\([a-z]\\|[A-Z]\\|[0-9]\\|_\\)*?\\)" flori-separates))
+(setq flori-attr-regexp (regexp-opt flori-attrs 'words))
 (setq flori-constant-regexp (concat flori-separates "\\([0-9]\\([0-9]\\|\.\\)*?\\)" flori-separates))
 (setq flori-string-regexp "\".*\"")
 
 (setq flori-font-lock-keywords
       `((,flori-keywords-regexp . font-lock-keyword-face)
-        (,flori-deftype-regexp (1 font-lock-variable-name-face))
-        (,flori-defn-regexp (1 font-lock-keyword-face) (2 font-lock-function-name-face))
-        (,flori-deftype-regexp (1 font-lock-keyword-face) (2 font-lock-function-name-face))
+        (,flori-def-regexp (1 font-lock-keyword-face) (2 font-lock-function-name-face))
         (,flori-type-regexp (1 font-lock-type-face))
         (,flori-attr-regexp . font-lock-preprocessor-face)
         (,flori-constant-regexp (2 font-lock-constant-face))
