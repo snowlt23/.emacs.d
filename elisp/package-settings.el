@@ -38,6 +38,10 @@
 (require 'undo-tree)
 (define-key global-map (kbd "C-x u") 'undo-tree-visualize)
 
+;;; plantuml
+(add-to-list 'auto-mode-alist '("\\.plantuml\\'" . plantuml-mode))
+(setq plantuml-output-type "utxt")
+
 ;;; C
 (setq c-default-style "bsd"
       c-basic-offset 2)

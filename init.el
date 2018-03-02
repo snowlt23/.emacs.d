@@ -21,6 +21,15 @@
 ;; move window bind to "C-u"
 (global-set-key (kbd "C-u") 'other-window)
 (global-set-key (kbd "C-a") 'back-to-indentation)
+;; move line
+(global-set-key (kbd "C-<up>") '(lambda ()
+                              (interactive)
+                              (forward-line -10)))
+(global-set-key (kbd "C-<down>") '(lambda ()
+                              (interactive)
+                              (forward-line 10)))
+;; jump line
+(global-set-key (kbd "C-j") 'goto-line)
 
 ;; menu and tool bar
 (menu-bar-mode -1)
