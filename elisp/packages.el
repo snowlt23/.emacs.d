@@ -8,6 +8,5 @@
 (install 'smartrep)
 (install 'undo-tree)
 (install 'nim-mode)
-(install 'plantuml-mode)
 
 (load "flori-mode")
