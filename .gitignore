@@ -2,6 +2,8 @@
 .mc-lists.el
 smex-items
 ido.last
+kkcrc
+isinstalled
 
 /elpa/*
 !elpa/empty.txt
@@ -10,5 +12,3 @@ ido.last
 !auto-save-list/empty.txt
 /backups/*
 !backups/empty.txt
-
-/isinstalled

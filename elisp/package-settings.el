@@ -9,6 +9,9 @@
 (global-set-key (kbd "M-x") 'smex)
 (setq ido-vertical-define-keys 'C-n-C-p-up-and-down)
 
+;;; eldoc
+(global-eldoc-mode -1)
+
 ;;; multi cursor with smartrep
 (require 'multiple-cursors)
 (require 'smartrep)
