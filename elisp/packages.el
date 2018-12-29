@@ -1,4 +1,3 @@
-
 ;;; Packages
 
 (install 'ido)
@@ -7,9 +6,7 @@
 (install 'multiple-cursors)
 (install 'smartrep)
 (install 'undo-tree)
-(install 'nim-mode)
-(install 'lua-mode)
-(install 'tuareg)
-(install 'racket-mode)
+(install 'glsl-mode)
+(install 'slime)
 
 (load "flori-mode")

@@ -1,9 +1,10 @@
-﻿
-.mc-lists.el
+﻿.mc-lists.el
 smex-items
 ido.last
 kkcrc
 isinstalled
+bookmarks
+/eshell
 
 /elpa/*
 !elpa/empty.txt

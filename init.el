@@ -1,4 +1,3 @@
-
 ;; UTF-8 settings
 (prefer-coding-system 'utf-8-unix)
 
@@ -15,21 +14,22 @@
 (scroll-bar-mode 0)
 
 ;; tab
-(setq-default tab-width 4
+(setq-default tab-width 2
               indent-tabs-mode nil)
 
-;; move window bind to "C-u"
-(global-set-key (kbd "C-u") 'other-window)
+;; left hand
+(global-set-key (kbd "C-j") 'goto-line)
+(global-set-key (kbd "C-v") 'set-mark-command)
+;; right hand
 (global-set-key (kbd "C-a") 'back-to-indentation)
-;; move line
+(global-set-key (kbd "C-e") 'move-end-of-line)
 (global-set-key (kbd "C-<up>") '(lambda ()
                               (interactive)
                               (forward-line -10)))
 (global-set-key (kbd "C-<down>") '(lambda ()
                               (interactive)
                               (forward-line 10)))
-;; jump line
-(global-set-key (kbd "C-j") 'goto-line)
+(global-set-key (kbd "C-u") 'other-window)
 
 ;; menu and tool bar
 (menu-bar-mode -1)
@@ -61,6 +61,27 @@
 (setq auto-save-timeout 30)
 (setq auto-save-interval 100)
 
+;; org-mode
+(setq org-directory "~/Google ドライブ/org/")
+(defun org-path (f)
+  (concat org-directory f))
+(setq org-default-notes-file "notes.org")
+(define-key global-map (kbd "C-c c") 'org-capture)
+(setq org-capture-templates
+      '(("n" "Note" entry (file+headline (org-path "notes.org") "Notes")
+         "* %?\nEntered on %U\n %i\n %a")
+        ))
+(defun show-org-buffer (file)
+  "Show an org-file FILE on the current buffer."
+  (interactive)
+  (if (get-buffer file)
+      (let ((buffer (get-buffer file)))
+        (switch-to-buffer buffer)
+        (message "%s" file))
+    (find-file (org-path file))))
+(global-set-key (kbd "C-c n") '(lambda () (interactive)
+                                 (show-org-buffer "notes.org")))
+
 (require 'package)
 (add-to-list 'package-archives
 	     '("melpa" . "http://melpa.milkbox.net/packages/"))
@@ -91,6 +112,7 @@
   (clean-directory "~/.emacs.d/auto-save-list"))
 (defun clean-emacs ()
   (interactive)
+  (delete-file "~/.emacs.d/isinstalled")
   (clean-packages)
   (clean-backups)
   (clean-autosaves))

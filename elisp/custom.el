@@ -5,7 +5,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (racket-mode undo-tree tuareg smex smartrep plantuml-mode nim-mode multiple-cursors lua-mode ido-vertical-mode))))
+    (ido-vertical-mode smex multiple-cursors smartrep undo-tree glsl-mode slime))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

@@ -1,4 +1,3 @@
-
 ;;; ido
 (require 'ido)
 (require 'ido-vertical-mode)
@@ -8,9 +7,6 @@
 (require 'smex)
 (global-set-key (kbd "M-x") 'smex)
 (setq ido-vertical-define-keys 'C-n-C-p-up-and-down)
-
-;;; eldoc
-(global-eldoc-mode -1)
 
 ;;; multi cursor with smartrep
 (require 'multiple-cursors)
@@ -41,11 +37,12 @@
 (require 'undo-tree)
 (define-key global-map (kbd "C-x u") 'undo-tree-visualize)
 
-;;; plantuml
-(add-to-list 'auto-mode-alist '("\\.plantuml\\'" . plantuml-mode))
-(setq plantuml-output-type "utxt")
-
 ;;; C
 (setq c-default-style "bsd"
       c-basic-offset 2)
 (electric-pair-mode t)
+
+;;; Common Lisp
+(setq inferior-lisp-program "sbcl")
+(require 'slime)
+(slime-setup '(slime-repl slime-fancy slime-banner))
