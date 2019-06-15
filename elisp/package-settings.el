@@ -1,3 +1,6 @@
+;;; todotxt
+(require 'todotxt)
+
 ;;; ido
 (require 'ido)
 (require 'ido-vertical-mode)
@@ -41,8 +44,3 @@
 (setq c-default-style "bsd"
       c-basic-offset 2)
 (electric-pair-mode t)
-
-;;; Common Lisp
-(setq inferior-lisp-program "sbcl")
-(require 'slime)
-(slime-setup '(slime-repl slime-fancy slime-banner))

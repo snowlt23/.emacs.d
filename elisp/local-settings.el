@@ -1,2 +1,2 @@
 ;; theme
-(load-theme 'adwaita t)
+(load-theme 'wombat t)

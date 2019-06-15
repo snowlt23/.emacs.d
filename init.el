@@ -18,8 +18,7 @@
               indent-tabs-mode nil)
 
 ;; left hand
-(global-set-key (kbd "C-j") 'goto-line)
-(global-set-key (kbd "C-v") 'set-mark-command)
+(global-set-key (kbd "C-l") 'goto-line)
 ;; right hand
 (global-set-key (kbd "C-a") 'back-to-indentation)
 (global-set-key (kbd "C-e") 'move-end-of-line)
@@ -62,15 +61,19 @@
 (setq auto-save-interval 100)
 
 ;; org-mode
-(setq org-directory "~/Google ドライブ/org/")
+(setq org-directory (expand-file-name "~/Dropbox/org/"))
 (defun org-path (f)
   (concat org-directory f))
 (setq org-default-notes-file "notes.org")
 (define-key global-map (kbd "C-c c") 'org-capture)
-(setq org-capture-templates
-      '(("n" "Note" entry (file+headline (org-path "notes.org") "Notes")
-         "* %?\nEntered on %U\n %i\n %a")
-        ))
+(setq org-capture-templates '(
+  ("n" "Note" entry
+    (file+headline (lambda () (org-path "notes.org")) "Notes")
+    "* %?\nEntered on %U\n %i\n %a")
+  ("t" "Todo" entry
+    (file+headline (lambda () (org-path "todos.org")) "Todos")
+    "* TODO [#B] %?")
+))
 (defun show-org-buffer (file)
   "Show an org-file FILE on the current buffer."
   (interactive)
@@ -81,6 +84,8 @@
     (find-file (org-path file))))
 (global-set-key (kbd "C-c n") '(lambda () (interactive)
                                  (show-org-buffer "notes.org")))
+(global-set-key (kbd "C-c t") '(lambda () (interactive)
+                                 (show-org-buffer "todos.org")))
 
 (require 'package)
 (add-to-list 'package-archives
