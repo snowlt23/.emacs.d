@@ -16,6 +16,10 @@
 ;; tab
 (setq-default tab-width 2
               indent-tabs-mode nil)
+; for Makefile
+(add-hook 'makefile-mode-hook
+  (function (lambda ()
+    (setq indent-tabs-mode t))))
 
 ;; left hand
 (global-set-key (kbd "C-l") 'goto-line)

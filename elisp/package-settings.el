@@ -1,5 +1,6 @@
-;;; todotxt
-(require 'todotxt)
+;;; org-mode
+(require 'org-bullets)
+(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
 
 ;;; ido
 (require 'ido)
@@ -44,3 +45,6 @@
 (setq c-default-style "bsd"
       c-basic-offset 2)
 (electric-pair-mode t)
+
+;;; nasm
+(add-to-list 'auto-mode-alist '("\\.\\(asm\\|s\\)$" . nasm-mode))
