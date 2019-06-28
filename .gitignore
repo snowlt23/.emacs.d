@@ -5,6 +5,7 @@ kkcrc
 isinstalled
 bookmarks
 /eshell
+*.elc
 
 /elpa/*
 !elpa/empty.txt
