@@ -24,15 +24,21 @@
 ;; left hand
 (global-set-key (kbd "C-l") 'goto-line)
 ;; right hand
-(global-set-key (kbd "C-a") 'back-to-indentation)
-(global-set-key (kbd "C-e") 'move-end-of-line)
 (global-set-key (kbd "C-<up>") '(lambda ()
                               (interactive)
                               (forward-line -10)))
 (global-set-key (kbd "C-<down>") '(lambda ()
                               (interactive)
                               (forward-line 10)))
-(global-set-key (kbd "C-u") 'other-window)
+
+(global-unset-key (kbd "C-z"))
+(global-set-key (kbd "C-z i") 'split-window-horizontally)
+(global-set-key (kbd "C-z o") 'split-window-vertically)
+(global-set-key (kbd "C-z x") 'delete-window)
+(global-set-key (kbd "C-z h") 'windmove-left)
+(global-set-key (kbd "C-z j") 'windmove-down)
+(global-set-key (kbd "C-z k") 'windmove-up)
+(global-set-key (kbd "C-z l") 'windmove-right)
 
 ;; menu and tool bar
 (menu-bar-mode -1)
