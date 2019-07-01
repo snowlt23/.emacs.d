@@ -1,6 +1,9 @@
 ;; UTF-8 settings
 (prefer-coding-system 'utf-8-unix)
 
+;; font
+(set-frame-font "-*-Inconsolata-normal-normal-normal-*-*-*-*-*-m-0-iso10646-1")
+
 ;; startup message
 (setq inhibit-startup-message t)
 ;; ring bell
