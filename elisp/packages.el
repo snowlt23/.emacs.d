@@ -1,6 +1,5 @@
 ;;; Packages
 
-(install 'org-bullets)
 (install 'ido)
 (install 'ido-vertical-mode)
 (install 'smex)
@@ -9,3 +8,4 @@
 (install 'undo-tree)
 (install 'glsl-mode)
 (install 'nasm-mode)
+(install 'fuel)

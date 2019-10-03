@@ -5,7 +5,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (org-bullets ido-vertical-mode smex multiple-cursors smartrep undo-tree glsl-mode nasm-mode))))
+    (fuel undo-tree smex smartrep org-bullets nasm-mode multiple-cursors ido-vertical-mode glsl-mode))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
