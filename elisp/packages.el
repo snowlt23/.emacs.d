@@ -7,3 +7,4 @@
 (install 'smartrep)
 (install 'howm)
 (install 'org-bullets)
+(install 'doom-themes)

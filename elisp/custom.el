@@ -5,7 +5,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (howm org-bullets smex smartrep nasm-mode multiple-cursors ido-vertical-mode glsl-mode fuel))))
+    (org-present smex smartrep org-bullets multiple-cursors ido-vertical-mode howm doom-themes))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
