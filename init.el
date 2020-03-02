@@ -2,7 +2,8 @@
 (prefer-coding-system 'utf-8-unix)
 
 ;; font
-;(set-frame-font "-*-Inconsolata-normal-normal-normal-*-*-*-*-*-m-0-iso10646-1")
+                                        ;(set-frame-font "-*-Inconsolata-normal-normal-normal-*-*-*-*-*-m-0-iso10646-1")
+(set-face-font 'default "Ricty Diminished-12:regular")
 
 ;; startup message
 (setq inhibit-startup-message t)
@@ -25,6 +26,16 @@
     (setq indent-tabs-mode t))))
 
 ;; move point
+(defun smart-line-beginning ()
+  "Move point to the beginning of text on the current line; if that is already
+the current position of point, then move it to the beginning of the line."
+  (interactive)
+  (let ((pt (point)))
+    (beginning-of-line-text)
+    (when (eq pt (point))
+      (beginning-of-line))))
+
+(global-set-key (kbd "C-a") 'smart-line-beginning)
 (global-set-key (kbd "C-;") 'goto-line)
 (global-set-key (kbd "C-<up>") '(lambda ()
                               (interactive)

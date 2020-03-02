@@ -43,15 +43,37 @@
 (add-to-list 'auto-mode-alist '("\\.txt$" . org-mode))
 (setq org-image-actual-width nil)
 (setq org-startup-with-inline-images t)
+(add-hook 'org-mode-hook 'show-all)
+
+(setq org-default-directory "~/Nextcloud/Org/")
 
 (defun ido-find-orgs ()
   (interactive)
-  (cd "~/Nextcloud/Org/")
+  (cd org-default-directory)
   (ido-find-file))
-(global-set-key (kbd "C-x C-o") 'ido-find-orgs)
+
+(defun org-make-namespace (ns)
+  (interactive "sEnter namespace: ")
+  (make-directory (concat org-default-directory ns)))
+
+(defun org-screenshot ()
+  "Take a screenshot into a time stamped unique-named file in the
+same directory as the org-buffer and insert a link to this file."
+  (interactive)
+  (setq filename (concat (format-time-string "%Y%m%d_%H%M%S") ".png"))
+  ;; (call-process (expand-file-name "~/private/scripts/elementary-shot") nil t nil (expand-file-name (concat "~/Nextcloud/Org/images/" filename)))
+  (call-process-shell-command (concat "gnome-screenshot -a -f " (expand-file-name (concat org-default-directory "images/" filename))) nil t nil)
+  (insert (concat "[[image:" filename "]]"))
+  (org-display-inline-images))
+
+(global-set-key (kbd "C-c f") 'ido-find-orgs)
+(global-set-key (kbd "C-c n") 'org-make-namespace)
+(global-set-key (kbd "C-c i") 'org-screenshot)
+(global-set-key (kbd "C-c r") 'org-redisplay-inline-images)
 
 (setq org-link-abbrev-alist
-      '(("image"  . "~/Nextcloud/Org/images/")))
+      `(("ns" . org-default-directory)
+        ("image"  . ,(concat org-default-directory "images/"))))
 
 (require 'org-bullets)
 (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
@@ -65,8 +87,12 @@
  )
 
 ;;; howm-mode
+(setq howm-view-title-header "*")
 (require 'howm-mode)
-(setq howm-home-directory "~/Nextcloud/howm/")
+(setq howm-menu-file (concat org-default-directory "menu.txt"))
+(add-hook 'howm-view-mode-hook 'org-mode)
+(setq howm-directory org-default-directory)
+(setq howm-template "* %title\n%date\n\n%cursor")
 (global-set-key (kbd "C-c , ,") 'howm-menu)
 
 ;;; C
