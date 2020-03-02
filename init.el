@@ -2,7 +2,7 @@
 (prefer-coding-system 'utf-8-unix)
 
 ;; font
-(set-frame-font "-*-Inconsolata-normal-normal-normal-*-*-*-*-*-m-0-iso10646-1")
+;(set-frame-font "-*-Inconsolata-normal-normal-normal-*-*-*-*-*-m-0-iso10646-1")
 
 ;; startup message
 (setq inhibit-startup-message t)
@@ -25,10 +25,6 @@
     (setq indent-tabs-mode t))))
 
 ;; move point
-(global-set-key (kbd "C-d") 'backward-char)
-(global-set-key (kbd "C-h") 'next-line)
-(global-set-key (kbd "C-t") 'previous-line)
-(global-set-key (kbd "C-n") 'forward-char)
 (global-set-key (kbd "C-;") 'goto-line)
 (global-set-key (kbd "C-<up>") '(lambda ()
                               (interactive)
@@ -38,14 +34,11 @@
                               (forward-line 10)))
 
 ;; window management
-(global-unset-key (kbd "C-o"))
-(global-set-key (kbd "C-o c") 'split-window-horizontally)
-(global-set-key (kbd "C-o r") 'split-window-vertically)
-(global-set-key (kbd "C-o x") 'delete-window)
-(global-set-key (kbd "C-o d") 'windmove-left)
-(global-set-key (kbd "C-o h") 'windmove-down)
-(global-set-key (kbd "C-o t") 'windmove-up)
-(global-set-key (kbd "C-o n") 'windmove-right)
+(global-unset-key (kbd "C-l"))
+(global-set-key (kbd "C-l i") 'split-window-horizontally)
+(global-set-key (kbd "C-l o") 'split-window-vertically)
+(global-set-key (kbd "C-l x") 'delete-window)
+(global-set-key (kbd "C-u") 'other-window)
 
 ;; menu and tool bar
 (menu-bar-mode -1)

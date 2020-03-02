@@ -6,10 +6,7 @@
 (setq ido-enable-flex-matching t)
 (require 'smex)
 (global-set-key (kbd "M-x") 'smex)
-(add-hook 'ido-setup-hook
-          (lambda ()
-            (define-key ido-completion-map (kbd "C-h") 'ido-next-match)
-            (define-key ido-completion-map (kbd "C-t") 'ido-prev-match)))
+(setq ido-vertical-define-keys 'C-n-and-C-p-only)
 
 ;;; multi cursor with smartrep
 (require 'multiple-cursors)
@@ -36,19 +33,21 @@
     ("o" . 'mc/sort-regions)
     ("O" . 'mc/reverse-regions)))
 
-;;; undotree
-(require 'undo-tree)
-(define-key global-map (kbd "C-x u") 'undo-tree-visualize)
+;;; org-mode
+(add-to-list 'auto-mode-alist '("\\.howm$" . org-mode))
+(add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
+(add-to-list 'auto-mode-alist '("\\.txt$" . org-mode))
+(setq org-startup-with-inline-images t)
+
+(require 'org-bullets)
+(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+
+;;; howm-mode
+(require 'howm-mode)
+(setq howm-home-directory "~/Nextcloud/howm/")
+(global-set-key (kbd "C-c , ,") 'howm-menu)
 
 ;;; C
 (setq c-default-style "bsd"
       c-basic-offset 2)
 (electric-pair-mode t)
-
-;;; nasm
-(add-to-list 'auto-mode-alist '("\\.\\(asm\\|s\\)$" . nasm-mode))
-
-;;; factor
-(require 'factor-mode)
-(setq fuel-listener-factor-binary "~/factor/factor")
-(setq fuel-listener-factor-image "~/factor/factor.image")
