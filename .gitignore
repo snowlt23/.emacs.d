@@ -9,6 +9,7 @@ bookmarks
 
 /elpa/*
 !elpa/empty.txt
+/straight
 
 /auto-save-list/*
 !auto-save-list/empty.txt

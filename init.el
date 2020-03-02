@@ -2,7 +2,6 @@
 (prefer-coding-system 'utf-8-unix)
 
 ;; font
-                                        ;(set-frame-font "-*-Inconsolata-normal-normal-normal-*-*-*-*-*-m-0-iso10646-1")
 (set-face-font 'default "Ricty Diminished-12:regular")
 
 ;; startup message
@@ -20,15 +19,13 @@
 ;; tab
 (setq-default tab-width 2
               indent-tabs-mode nil)
-; for Makefile
+;; for Makefile
 (add-hook 'makefile-mode-hook
   (function (lambda ()
     (setq indent-tabs-mode t))))
 
 ;; move point
 (defun smart-line-beginning ()
-  "Move point to the beginning of text on the current line; if that is already
-the current position of point, then move it to the beginning of the line."
   (interactive)
   (let ((pt (point)))
     (beginning-of-line-text)
@@ -63,9 +60,6 @@ the current position of point, then move it to the beginning of the line."
 (show-paren-mode 1)
 (delete-selection-mode t)
 
-;; font
-;; (set-face-attribute 'default nil :family "MyricaM M" :height 120)
-
 ;; add load path
 (add-to-list 'load-path "~/.emacs.d/elisp")
 
@@ -81,47 +75,10 @@ the current position of point, then move it to the beginning of the line."
 (setq auto-save-timeout 30)
 (setq auto-save-interval 100)
 
-;; org-mode
-(setq org-directory (expand-file-name "~/Dropbox/org/"))
-(defun org-path (f)
-  (concat org-directory f))
-(setq org-default-notes-file "notes.org")
-(define-key global-map (kbd "C-c c") 'org-capture)
-(setq org-capture-templates '(
-  ("n" "Note" entry
-    (file+headline (lambda () (org-path "notes.org")) "Notes")
-    "* %?\nEntered on %U\n %i\n %a")
-  ("t" "Todo" entry
-    (file+headline (lambda () (org-path "todos.org")) "Todos")
-    "* TODO [#B] %?")
-))
-(defun show-org-buffer (file)
-  "Show an org-file FILE on the current buffer."
-  (interactive)
-  (if (get-buffer file)
-      (let ((buffer (get-buffer file)))
-        (switch-to-buffer buffer)
-        (message "%s" file))
-    (find-file (org-path file))))
-(global-set-key (kbd "C-c n") '(lambda () (interactive)
-                                 (show-org-buffer "notes.org")))
-(global-set-key (kbd "C-c t") '(lambda () (interactive)
-                                 (show-org-buffer "todos.org")))
-
-(require 'package)
-(add-to-list 'package-archives
-	     '("melpa" . "http://melpa.milkbox.net/packages/"))
-(package-initialize)
-
-(setq install-package-list '())
-(defun install (package)
-  (add-to-list 'install-package-list package))
-(defun install-packages ()
-  (interactive)
-  (package-refresh-contents)
-  (dolist (package install-package-list)
-    (unless (package-installed-p package)
-      (package-install package))))
+;;; C
+(setq c-default-style "bsd"
+      c-basic-offset 2)
+(electric-pair-mode t)
 
 (defun clean-directory (dir)
   (delete-directory dir t)
@@ -143,11 +100,24 @@ the current position of point, then move it to the beginning of the line."
   (clean-backups)
   (clean-autosaves))
 
-(load "local-settings.el")
+(require 'package)
+(add-to-list 'package-archives
+	     '("melpa" . "http://melpa.milkbox.net/packages/"))
+(package-initialize)
+
+(defvar bootstrap-version)
+(let ((bootstrap-file
+       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+      (bootstrap-version 5))
+  (unless (file-exists-p bootstrap-file)
+    (with-current-buffer
+        (url-retrieve-synchronously
+         "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
+         'silent 'inhibit-cookies)
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
+  (load bootstrap-file nil 'nomessage))
+(require 'use-package-ensure)
+(setq use-package-always-ensure t)
 
 (load "packages.el")
-(if (not (file-exists-p "~/.emacs.d/isinstalled"))
-    (let ()
-      (install-packages)
-      (write-region "" nil "~/.emacs.d/isinstalled")))
-(load "package-settings.el")

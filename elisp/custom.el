@@ -5,7 +5,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (org-brain smex smartrep org-present org-bullets multiple-cursors ido-vertical-mode howm doom-themes))))
+    (use-package org-roam smex smartrep org-present org-bullets org-brain multiple-cursors ido-vertical-mode howm doom-themes))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
