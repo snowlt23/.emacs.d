@@ -4,7 +4,7 @@
 
 (use-package doom-themes
   :config
-  (load-theme 'doom-one-light t)
+  (load-theme 'doom-one t)
   ;; Corrects (and improves) org-mode's native fontification.
   (doom-themes-org-config))
 
@@ -102,20 +102,8 @@ same directory as the org-buffer and insert a link to this file."
   :custom-face
   (org-document-title ((t (:inherit document-title :height 1.7))))
   (org-level-1 ((t (:inherit outline-1 :height 1.5))))
-  (org-level-2 ((t (:inherit outline-2 :height 1.3))))
-  (org-level-3 ((t (:inherit outline-3 :height 1.2))))
-  (org-level-4 ((t (:inherit outline-4 :height 1.1))))
+  (org-level-2 ((t (:inherit outline-2 :height 1.2))))
+  (org-level-3 ((t (:inherit outline-3 :height 1.0))))
+  (org-level-4 ((t (:inherit outline-4 :height 1.0))))
   (org-level-5 ((t (:inherit outline-5 :height 1.0)))))
 
-(use-package org-roam
-  :hook 
-  (after-init . org-roam-mode)
-  :straight (:host github :repo "jethrokuan/org-roam" :branch "develop")
-  :custom
-  (org-roam-directory "~/Nextcloud/Org/")
-  :bind (:map org-roam-mode-map
-              (("C-c l l" . org-roam)
-               ("C-c l f" . org-roam-find-file)
-               ("C-c l g" . org-roam-show-graph))
-              :map org-mode-map
-              (("C-c l i" . org-roam-insert))))

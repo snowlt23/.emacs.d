@@ -3,8 +3,10 @@
 
 ;; font
 (set-face-font 'default "Ricty Diminished-12:regular")
+;(set-frame-parameter (selected-frame) 'alpha '(85 85))
+                                        ;(add-to-list 'default-frame-alist '(alpha 85 85))
 
-;; startup message
+;; Startup message
 (setq inhibit-startup-message t)
 ;; ring bell
 (setq ring-bell-function 'ignore)
