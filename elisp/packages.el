@@ -128,3 +128,19 @@ same directory as the org-buffer and insert a link to this file."
         deft-use-filename-as-title t
         deft-use-filter-string-for-filename t
         deft-recursive t))
+
+(defun my-org-download-link-format-function (filename)
+  "The default function of `org-download-link-format-function'."
+  (if (and (>= (string-to-number org-version) 9.3)
+           (eq org-download-method 'attach))
+      (format "[[attachment:%s]]\n"
+              (org-link-escape
+               (file-relative-name filename (org-attach-dir))))
+    (let ((f (org-link-escape (file-name-nondirectory filename))))
+      (concat "[[image:" f "]]\n"
+              "[[file:Android/media/com.nextcloud.client/nextcloud/admin@osnn.myddns.me%2Fnextcloud/Org/images/" f "]]\n"))))
+
+(use-package org-download
+  :init
+  (setq org-download-image-dir (concat org-default-directory "images")
+        org-download-link-format-function #'my-org-download-link-format-function))
