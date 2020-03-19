@@ -87,6 +87,7 @@ same directory as the org-buffer and insert a link to this file."
   (interactive "sLink: ")
   (insert (concat "[[ns:" l ".org][" l "]]")))
 
+;; org-mode key bindings
 (global-set-key (kbd "C-c f") 'ido-find-orgs)
 (global-set-key (kbd "C-c n") 'org-make-namespace)
 (global-set-key (kbd "C-c i") 'org-screenshot)
@@ -94,6 +95,8 @@ same directory as the org-buffer and insert a link to this file."
 (global-set-key (kbd "C-c o") 'org-open-at-point)
 (global-set-key (kbd "C-c k") 'org-insert-nslink)
 (global-set-key (kbd "C-c a") 'org-agenda)
+(global-set-key (kbd "C-c h") 'org-promote-subtree)
+(global-set-key (kbd "C-c l") 'org-demote-subtree)
 (global-set-key (kbd "C-c c i") 'org-clock-in)
 (global-set-key (kbd "C-c c o") 'org-clock-out)
 (global-set-key (kbd "C-c c r") 'org-clock-report)
