@@ -117,3 +117,14 @@ same directory as the org-buffer and insert a link to this file."
   (org-level-3 ((t (:inherit outline-3 :height 1.0))))
   (org-level-4 ((t (:inherit outline-4 :height 1.0))))
   (org-level-5 ((t (:inherit outline-5 :height 1.0)))))
+
+(use-package deft
+  :bind ("C-c d" . deft)
+  :commands (deft)
+  :init
+  (setq deft-directory org-default-directory
+        deft-extensions '("org")
+        deft-default-extension "org"
+        deft-use-filename-as-title t
+        deft-use-filter-string-for-filename t
+        deft-recursive t))
