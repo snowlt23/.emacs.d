@@ -55,7 +55,6 @@
 (setq org-image-actual-width nil)
 (setq org-startup-with-inline-images t)
 (setq org-agenda-files (list org-default-directory))
-(setq org-use-speed-commands t)
 
 (setq org-capture-templates
       `(("t" "Todo" entry (file+headline ,(concat org-default-directory "todo.org") "Tasks")
