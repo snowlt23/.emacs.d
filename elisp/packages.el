@@ -55,14 +55,14 @@
 (setq org-image-actual-width nil)
 (setq org-startup-with-inline-images t)
 (setq org-agenda-files (list org-default-directory))
+(setq org-log-done 'time)
+
+(setq org-todo-keywords
+  '((sequence "TODO(t)" "SOMEDAY(s)" "WAITING(w)" "|" "DONE(d)" "CANCELED(c)")))
 
 (setq org-capture-templates
-      `(("t" "Todo" entry (file+headline ,(concat org-default-directory "todo.org") "Tasks")
-         "* TODO %?\n  %i\n  %a")
-        ("n" "Note" entry (file+headline ,(concat org-default-directory "notes.org") "Notes")
-         "* %?\n  %i\n  %a")
-        ("j" "Journal" entry (file+datetree ,(concat org-default-directory "journal.org"))
-         "* %?\nEntered on %U\n  %i\n  %a")))
+      `(("i" "INBOX" entry (file+headline ,(concat org-default-directory "inbox.org") "INBOX")
+         "* %?\n  %i")))
 
 (defun ido-find-orgs ()
   (interactive)
@@ -88,6 +88,7 @@ same directory as the org-buffer and insert a link to this file."
   (insert (concat "[[ns:" l ".org][" l "]]")))
 
 ;; org-mode key bindings
+(global-set-key (kbd "C-c C-c") 'org-capture)
 (global-set-key (kbd "C-c f") 'ido-find-orgs)
 (global-set-key (kbd "C-c n") 'org-make-namespace)
 (global-set-key (kbd "C-c i s") 'org-screenshot)
