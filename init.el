@@ -1,8 +1,25 @@
 ;; UTF-8 settings
-(prefer-coding-system 'utf-8-unix)
+(set-language-environment 'utf-8)
+(setq locale-coding-system 'utf-8)
+(prefer-coding-system 'utf-8)
+(setq default-file-name-coding-system 'utf-8)
+(set-default-coding-systems 'utf-8)              
+(set-terminal-coding-system 'utf-8)
+(set-keyboard-coding-system 'utf-8)
+(setq x-select-request-type '(UTF8_STRING COMPOUND_TEXT TEXT STRING))
 
+;; GC
+(setq gc-cons-threshold (* 511 1024 1024 ))
+(setq gc-cons-percentage 0.5)
+(run-with-idle-timer 5 t #'garbage-collect)
+(setq garbage-collection-messages t)
+
+;; fallback font
+;(when (member "Symbola" (font-family-list))
+;  (set-fontset-font "fontset-default" nil
+;                    (font-spec :size 20 :name "Symbola")))
 ;; font
-(set-face-font 'default "Ricty Diminished-12:regular")
+(set-face-font 'default "Noto Sans-11:regular")
 ;(set-frame-parameter (selected-frame) 'alpha '(85 85))
                                         ;(add-to-list 'default-frame-alist '(alpha 85 85))
 

@@ -54,6 +54,8 @@
 (setq org-default-directory "~/Nextcloud/Org/")
 (setq org-image-actual-width nil)
 (setq org-startup-with-inline-images t)
+(setq org-agenda-files (list org-default-directory))
+(setq org-use-speed-commands t)
 
 (setq org-capture-templates
       `(("t" "Todo" entry (file+headline ,(concat org-default-directory "todo.org") "Tasks")
@@ -92,6 +94,10 @@ same directory as the org-buffer and insert a link to this file."
 (global-set-key (kbd "C-c r") 'org-redisplay-inline-images)
 (global-set-key (kbd "C-c o") 'org-open-at-point)
 (global-set-key (kbd "C-c k") 'org-insert-nslink)
+(global-set-key (kbd "C-c a") 'org-agenda)
+(global-set-key (kbd "C-c c i") 'org-clock-in)
+(global-set-key (kbd "C-c c o") 'org-clock-out)
+(global-set-key (kbd "C-c c r") 'org-clock-report)
 
 (setq org-link-abbrev-alist
       `(("ns" . ,org-default-directory)
@@ -99,6 +105,9 @@ same directory as the org-buffer and insert a link to this file."
 
 (use-package org-bullets
   :config (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+  :init
+  (setq org-bullets-bullet-list
+        '("⦿" "⊙" "◆" "◇" "❖" "❋"))
   :custom-face
   (org-document-title ((t (:inherit document-title :height 1.7))))
   (org-level-1 ((t (:inherit outline-1 :height 1.5))))
@@ -106,4 +115,3 @@ same directory as the org-buffer and insert a link to this file."
   (org-level-3 ((t (:inherit outline-3 :height 1.0))))
   (org-level-4 ((t (:inherit outline-4 :height 1.0))))
   (org-level-5 ((t (:inherit outline-5 :height 1.0)))))
-
