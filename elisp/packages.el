@@ -90,7 +90,8 @@ same directory as the org-buffer and insert a link to this file."
 ;; org-mode key bindings
 (global-set-key (kbd "C-c f") 'ido-find-orgs)
 (global-set-key (kbd "C-c n") 'org-make-namespace)
-(global-set-key (kbd "C-c i") 'org-screenshot)
+(global-set-key (kbd "C-c i s") 'org-screenshot)
+(global-set-key (kbd "C-c i d") 'org-download-image)
 (global-set-key (kbd "C-c r") 'org-redisplay-inline-images)
 (global-set-key (kbd "C-c o") 'org-open-at-point)
 (global-set-key (kbd "C-c k") 'org-insert-nslink)
@@ -137,10 +138,13 @@ same directory as the org-buffer and insert a link to this file."
               (org-link-escape
                (file-relative-name filename (org-attach-dir))))
     (let ((f (org-link-escape (file-name-nondirectory filename))))
-      (concat "[[image:" f "]]\n"
+      (concat "#+ATTR_ORG: :width 300\n"
+              "[[image:" f "]]\n"
               "[[file:Android/media/com.nextcloud.client/nextcloud/admin@osnn.myddns.me%2Fnextcloud/Org/images/" f "]]\n"))))
 
 (use-package org-download
   :init
   (setq org-download-image-dir (concat org-default-directory "images")
+        org-download-heading-lvl nil
+        org-download-backend "curl \"%s\" -o \"%s\""
         org-download-link-format-function #'my-org-download-link-format-function))
