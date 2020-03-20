@@ -87,13 +87,19 @@ same directory as the org-buffer and insert a link to this file."
   (interactive "sLink: ")
   (insert (concat "[[ns:" l ".org][" l "]]")))
 
+(defun revert-buffer-no-confirm ()
+  "Revert buffer without confirmation."
+  (interactive)
+  (revert-buffer :ignore-auto :noconfirm))
+
 ;; org-mode key bindings
 (global-set-key (kbd "C-c C-c") 'org-capture)
 (global-set-key (kbd "C-c f") 'ido-find-orgs)
 (global-set-key (kbd "C-c n") 'org-make-namespace)
 (global-set-key (kbd "C-c i s") 'org-screenshot)
 (global-set-key (kbd "C-c i d") 'org-download-image)
-(global-set-key (kbd "C-c r") 'org-redisplay-inline-images)
+(global-set-key (kbd "C-c r r") 'revert-buffer-no-confirm)
+(global-set-key (kbd "C-c r i") 'org-redisplay-inline-images)
 (global-set-key (kbd "C-c o") 'org-open-at-point)
 (global-set-key (kbd "C-c k") 'org-insert-nslink)
 (global-set-key (kbd "C-c a") 'org-agenda)
