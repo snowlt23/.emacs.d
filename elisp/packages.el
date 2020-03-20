@@ -155,3 +155,39 @@ same directory as the org-buffer and insert a link to this file."
         org-download-heading-lvl nil
         org-download-backend "curl \"%s\" -o \"%s\""
         org-download-link-format-function #'my-org-download-link-format-function))
+
+;; org notify
+
+(defvar previous-notify-id nil)
+
+(defun notify (title body)
+  (if (eq system-type 'windows-nt)
+      (progn
+        (if previous-notify-id
+          (w32-notification-close previous-notify-id))
+        (setq previous-notify-id
+              (w32-notification-notify
+               :title title
+               :body  body)))
+    (notification-notify
+     :title title
+     :body body)))
+
+(defun notify-wrapper (min-to-app new-time msg)
+  (interactive)
+  (notify (format "org-agenda: 予定まで%s分" min-to-app)
+          msg))
+
+(require 'appt)
+(appt-activate 1)
+(setq appt-display-format 'window)
+(setq appt-display-mode-line nil)
+(setq appt-message-warning-time 10)
+(setq appt-display-interval appt-message-warning-time)
+(setq appt-disp-window-function #'notify-wrapper)
+(add-hook 'after-save-hook
+          '(lambda ()
+             (if (string= (file-name-extension (buffer-file-name)) ".org")
+                 (org-agenda-to-appt))))
+(org-agenda-to-appt)
+(add-hook 'org-finalize-agenda-hook 'org-agenda-to-appt)
