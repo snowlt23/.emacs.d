@@ -169,9 +169,9 @@ same directory as the org-buffer and insert a link to this file."
               (w32-notification-notify
                :title title
                :body  body)))
-    (notification-notify
-     :title title
-     :body body)))
+    (let ((notify-icon "/usr/share/icons/gnome/32x32/status/appointment-soon.png")
+          (notify-sound "/usr/share/sounds/gnome/default/alerts/drip.ogg"))
+      (notifications-notify :title title :body body :app-icon notify-icon :sound-file notify-sound))))
 
 (defun notify-wrapper (min-to-app new-time msg)
   (interactive)

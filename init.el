@@ -14,6 +14,9 @@
 (run-with-idle-timer 5 t #'garbage-collect)
 (setq garbage-collection-messages t)
 
+(when (eq system-type 'gnu/linux)
+  (set-face-font 'default "Ricty Diminished-12:regular"))
+
 ;; fallback font
 ;(when (member "Symbola" (font-family-list))
 ;  (set-fontset-font "fontset-default" nil
