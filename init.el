@@ -54,22 +54,6 @@
     (when (eq pt (point))
       (beginning-of-line))))
 
-(global-set-key (kbd "C-a") 'smart-line-beginning)
-(global-set-key (kbd "C-;") 'goto-line)
-(global-set-key (kbd "C-<up>") '(lambda ()
-                              (interactive)
-                              (forward-line -10)))
-(global-set-key (kbd "C-<down>") '(lambda ()
-                              (interactive)
-                              (forward-line 10)))
-
-;; window management
-(global-unset-key (kbd "C-l"))
-(global-set-key (kbd "C-l i") 'split-window-horizontally)
-(global-set-key (kbd "C-l o") 'split-window-vertically)
-(global-set-key (kbd "C-l x") 'delete-window)
-(global-set-key (kbd "C-u") 'other-window)
-
 ;; menu and tool bar
 (menu-bar-mode -1)
 (tool-bar-mode -1)
@@ -126,6 +110,11 @@
 (add-to-list 'package-archives
 	     '("melpa" . "http://melpa.milkbox.net/packages/"))
 (package-initialize)
+(if (not (file-exists-p "~/.emacs.d/isinstalled"))
+  (progn
+    (package-refresh-contents)
+    (package-install 'use-package)
+    (write-region "" nil "~/.emacs.d/isinstalled")))
 
 (defvar bootstrap-version)
 (let ((bootstrap-file

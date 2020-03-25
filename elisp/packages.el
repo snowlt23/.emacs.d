@@ -8,6 +8,18 @@
   ;; Corrects (and improves) org-mode's native fontification.
   (doom-themes-org-config))
 
+(use-package evil
+  :config
+  (evil-mode 1)
+  ;; window management
+  (evil-define-key 'normal 'global (kbd "SPC w i") 'split-window-horizontally)
+  (evil-define-key 'normal 'global (kbd "SPC w o") 'split-window-vertically)
+  (evil-define-key 'normal 'global (kbd "SPC w d") 'delete-window)
+  (evil-define-key 'normal 'global (kbd "SPC w h") 'windmove-left)
+  (evil-define-key 'normal 'global (kbd "SPC w j") 'windmove-down)
+  (evil-define-key 'normal 'global (kbd "SPC w k") 'windmove-up)
+  (evil-define-key 'normal 'global (kbd "SPC w l") 'windmove-right))
+
 (use-package ido
   :config
   (setq ido-enable-flex-matching t)
@@ -20,32 +32,32 @@
 
 (use-package smex
   :config
-  (global-set-key (kbd "M-x") 'smex))
+  (evil-define-key '(normal visual) 'global (kbd "SPC SPC") 'smex))
 
 (use-package smartrep)
 
-(use-package multiple-cursors
-  :config
-  (global-set-key (kbd "C-M-c")
-                  'mc/edit-lines)
-  (global-set-key (kbd "C-M-r")
-                  'mc/mark-all-in-region)
-  (global-unset-key (kbd "C-v"))
-  (smartrep-define-key global-map
-      "C-v"
-    '(("C-v" . 'mc/mark-next-like-this)
-      ("h" . 'mc/mark-next-like-this)
-      ("t" . 'mc/mark-previous-like-this)
-      ("m" . 'mc/mark-more-like-this-extended)
-      ("u" . 'mc/unmark-next-like-this)
-      ("U" . 'mc/unmark-previous-like-this)
-      ("s" . 'mc/skip-to-next-like-this)
-      ("S" . 'mc/skip-to-previous-like-this)
-      ("a" . 'mc/mark-all-like-this)
-      ("d" . 'mc/mark-all-like-this-dwim)
-      ("i" . 'mc/insert-numbers)
-      ("o" . 'mc/sort-regions)
-      ("O" . 'mc/reverse-regions))))
+;;(use-package multiple-cursors
+;;  :config
+;;  (global-set-key (kbd "C-M-c")
+;;                  'mc/edit-lines)
+;;  (global-set-key (kbd "C-M-r")
+;;                  'mc/mark-all-in-region)
+;;  (global-unset-key (kbd "C-v"))
+;;  (smartrep-define-key global-map
+;;      "C-v"
+;;    '(("C-v" . 'mc/mark-next-like-this)
+;;      ("h" . 'mc/mark-next-like-this)
+;;      ("t" . 'mc/mark-previous-like-this)
+;;      ("m" . 'mc/mark-more-like-this-extended)
+;;      ("u" . 'mc/unmark-next-like-this)
+;;      ("U" . 'mc/unmark-previous-like-this)
+;;      ("s" . 'mc/skip-to-next-like-this)
+;;      ("S" . 'mc/skip-to-previous-like-this)
+;;      ("a" . 'mc/mark-all-like-this)
+;;      ("d" . 'mc/mark-all-like-this-dwim)
+;;      ("i" . 'mc/insert-numbers)
+;;      ("o" . 'mc/sort-regions)
+;;      ("O" . 'mc/reverse-regions))))
 
 ;;;
 ;;; org-mode
@@ -93,25 +105,22 @@ same directory as the org-buffer and insert a link to this file."
   (revert-buffer :ignore-auto :noconfirm))
 
 ;; org-mode key bindings
-(global-set-key (kbd "C-c C-c") 'org-capture)
-(global-set-key (kbd "C-c f") 'ido-find-orgs)
-(global-set-key (kbd "C-c n") 'org-make-namespace)
-(global-set-key (kbd "C-c i s") 'org-screenshot)
-(global-set-key (kbd "C-c i d") 'org-download-image)
-(global-set-key (kbd "C-c r r") 'revert-buffer-no-confirm)
-(global-set-key (kbd "C-c r i") 'org-redisplay-inline-images)
-(global-set-key (kbd "C-c o") 'org-open-at-point)
-(global-set-key (kbd "C-c k") 'org-insert-nslink)
-(global-set-key (kbd "C-c a") 'org-agenda)
-(global-set-key (kbd "C-c h") 'org-promote-subtree)
-(global-set-key (kbd "C-c l") 'org-demote-subtree)
-(global-set-key (kbd "C-c c i") 'org-clock-in)
-(global-set-key (kbd "C-c c o") 'org-clock-out)
-(global-set-key (kbd "C-c c r") 'org-clock-report)
+(evil-define-key 'normal 'global (kbd "SPC o f") 'ido-find-orgs)
+(evil-define-key 'normal 'global (kbd "SPC o i s") 'org-screenshot)
+(evil-define-key 'normal 'global (kbd "SPC o i d") 'org-download-image)
+(evil-define-key 'normal 'global (kbd "SPC o r r") 'revert-buffer-no-confirm)
+(evil-define-key 'normal 'global (kbd "SPC o r i") 'org-redisplay-inline-images)
+(evil-define-key 'normal 'global (kbd "SPC o o") 'org-open-at-point)
+(evil-define-key 'normal 'global (kbd "SPC o a") 'org-agenda)
+(evil-define-key 'normal 'global (kbd "SPC o h") 'org-promote-subtree)
+(evil-define-key 'normal 'global (kbd "SPC o l") 'org-demote-subtree)
+(evil-define-key 'normal 'global (kbd "SPC o c c") 'org-capture)
+(evil-define-key 'normal 'global (kbd "SPC o c i") 'org-clock-in)
+(evil-define-key 'normal 'global (kbd "SPC o c o") 'org-clock-out)
+(evil-define-key 'normal 'global (kbd "SPC o c r") 'org-clock-report)
 
 (setq org-link-abbrev-alist
-      `(("ns" . ,org-default-directory)
-        ("image"  . ,(concat org-default-directory "images/"))))
+      `(("image"  . ,(concat org-default-directory "images/"))))
 
 (use-package org-bullets
   :config (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
