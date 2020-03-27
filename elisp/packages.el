@@ -10,15 +10,33 @@
 
 (use-package evil
   :config
-  (evil-mode 1)
-  ;; window management
-  (evil-define-key 'normal 'global (kbd "SPC w i") 'split-window-horizontally)
-  (evil-define-key 'normal 'global (kbd "SPC w o") 'split-window-vertically)
-  (evil-define-key 'normal 'global (kbd "SPC w d") 'delete-window)
-  (evil-define-key 'normal 'global (kbd "SPC w h") 'windmove-left)
-  (evil-define-key 'normal 'global (kbd "SPC w j") 'windmove-down)
-  (evil-define-key 'normal 'global (kbd "SPC w k") 'windmove-up)
-  (evil-define-key 'normal 'global (kbd "SPC w l") 'windmove-right))
+  (evil-mode 1))
+
+;; cursor movement
+(evil-define-key '(normal visual) 'global (kbd "d") 'evil-backward-char)
+(evil-define-key '(normal visual) 'global (kbd "h") 'evil-next-line)
+(evil-define-key '(normal visual) 'global (kbd "t") 'evil-previous-line)
+(evil-define-key '(normal visual) 'global (kbd "n") 'evil-forward-char)
+(evil-define-key '(normal visual) 'global (kbd "a") 'evil-beginning-of-line)
+(evil-define-key '(normal visual) 'global (kbd "e") 'evil-end-of-line)
+
+;; basic
+(evil-define-key '(normal visual) 'global (kbd "SPC f") 'ido-find-file)
+(evil-define-key '(normal visual) 'global (kbd "SPC s") 'save-buffer)
+(evil-define-key '(normal visual) 'global (kbd "c") 'evil-insert)
+(evil-define-key '(normal visual) 'global (kbd "r") 'evil-append)
+(evil-define-key '(normal visual) 'global (kbd "q") 'nil)
+(evil-define-key '(normal visual) 'global (kbd "q q") 'save-buffers-kill-terminal)
+(evil-define-key '(normal visual) 'global (kbd "SPC d d") 'evil-delete-whole-line)
+
+;; window management
+(evil-define-key 'normal 'global (kbd "SPC w c") 'split-window-horizontally)
+(evil-define-key 'normal 'global (kbd "SPC w r") 'split-window-vertically)
+(evil-define-key 'normal 'global (kbd "SPC w x") 'delete-window)
+(evil-define-key 'normal 'global (kbd "SPC w d") 'windmove-left)
+(evil-define-key 'normal 'global (kbd "SPC w h") 'windmove-down)
+(evil-define-key 'normal 'global (kbd "SPC w t") 'windmove-up)
+(evil-define-key 'normal 'global (kbd "SPC w n") 'windmove-right)
 
 (use-package ido
   :config
