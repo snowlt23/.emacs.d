@@ -17,16 +17,14 @@
 (evil-define-key '(normal visual) 'global (kbd "h") 'evil-next-line)
 (evil-define-key '(normal visual) 'global (kbd "t") 'evil-previous-line)
 (evil-define-key '(normal visual) 'global (kbd "n") 'evil-forward-char)
-(evil-define-key '(normal visual) 'global (kbd "a") 'evil-beginning-of-line)
-(evil-define-key '(normal visual) 'global (kbd "e") 'evil-end-of-line)
 
 ;; basic
 (evil-define-key '(normal visual) 'global (kbd "SPC f") 'ido-find-file)
 (evil-define-key '(normal visual) 'global (kbd "SPC s") 'save-buffer)
 (evil-define-key '(normal visual) 'global (kbd "c") 'evil-insert)
 (evil-define-key '(normal visual) 'global (kbd "r") 'evil-append)
-(evil-define-key '(normal visual) 'global (kbd "q") 'nil)
-(evil-define-key '(normal visual) 'global (kbd "q q") 'save-buffers-kill-terminal)
+(evil-define-key '(normal visual) 'global (kbd "SPC q q") 'save-buffers-kill-terminal)
+(evil-define-key '(normal visual) 'global (kbd "e e") 'evil-delete-whole-line)
 (evil-define-key '(normal visual) 'global (kbd "SPC d d") 'evil-delete-whole-line)
 
 ;; window management
