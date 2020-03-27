@@ -20,21 +20,24 @@
 
 ;; basic
 (evil-define-key '(normal visual) 'global (kbd "SPC f") 'ido-find-file)
+(evil-define-key '(normal visual) 'global (kbd "SPC b") 'ido-switch-buffer)
 (evil-define-key '(normal visual) 'global (kbd "SPC s") 'save-buffer)
 (evil-define-key '(normal visual) 'global (kbd "c") 'evil-insert)
 (evil-define-key '(normal visual) 'global (kbd "r") 'evil-append)
 (evil-define-key '(normal visual) 'global (kbd "SPC q q") 'save-buffers-kill-terminal)
-(evil-define-key '(normal visual) 'global (kbd "e e") 'evil-delete-whole-line)
-(evil-define-key '(normal visual) 'global (kbd "SPC d d") 'evil-delete-whole-line)
+
+;; delete
+(evil-define-key 'visual 'global (kbd "e") 'evil-delete)
+(evil-define-key 'normal 'global (kbd "e e") 'evil-delete-whole-line)
 
 ;; window management
-(evil-define-key 'normal 'global (kbd "SPC w c") 'split-window-horizontally)
-(evil-define-key 'normal 'global (kbd "SPC w r") 'split-window-vertically)
-(evil-define-key 'normal 'global (kbd "SPC w x") 'delete-window)
-(evil-define-key 'normal 'global (kbd "SPC w d") 'windmove-left)
-(evil-define-key 'normal 'global (kbd "SPC w h") 'windmove-down)
-(evil-define-key 'normal 'global (kbd "SPC w t") 'windmove-up)
-(evil-define-key 'normal 'global (kbd "SPC w n") 'windmove-right)
+(evil-define-key 'normal 'global (kbd "SPC c") 'split-window-horizontally)
+(evil-define-key 'normal 'global (kbd "SPC r") 'split-window-vertically)
+(evil-define-key 'normal 'global (kbd "SPC e") 'delete-window)
+(evil-define-key 'normal 'global (kbd "SPC d") 'windmove-left)
+(evil-define-key 'normal 'global (kbd "SPC h") 'windmove-down)
+(evil-define-key 'normal 'global (kbd "SPC t") 'windmove-up)
+(evil-define-key 'normal 'global (kbd "SPC n") 'windmove-right)
 
 (use-package ido
   :config
@@ -44,7 +47,7 @@
 (use-package ido-vertical-mode
   :config
   (ido-vertical-mode 1)
-  (setq ido-vertical-define-keys 'C-n-and-C-p-only))
+  (setq ido-vertical-define-keys 'C-n-C-p-up-and-down))
 
 (use-package smex
   :config
@@ -111,10 +114,6 @@ same directory as the org-buffer and insert a link to this file."
   (insert (concat "[[image:" filename "]]"))
   (org-display-inline-images))
 
-(defun org-insert-nslink (l)
-  (interactive "sLink: ")
-  (insert (concat "[[ns:" l ".org][" l "]]")))
-
 (defun revert-buffer-no-confirm ()
   "Revert buffer without confirmation."
   (interactive)
@@ -136,7 +135,8 @@ same directory as the org-buffer and insert a link to this file."
 (evil-define-key 'normal 'global (kbd "SPC o c r") 'org-clock-report)
 
 (setq org-link-abbrev-alist
-      `(("image"  . ,(concat org-default-directory "images/"))))
+      `(("image" . ,(concat org-default-directory "images/"))
+        ("nc" . "~/Nextcloud/")))
 
 (use-package org-bullets
   :config (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
