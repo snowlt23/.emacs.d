@@ -1,3 +1,7 @@
+(require 'server)
+(unless (server-running-p)
+  (server-start))
+
 ;; UTF-8 settings
 (set-locale-environment nil)
 (set-language-environment "Japanese")

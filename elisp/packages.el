@@ -17,6 +17,8 @@
 (evil-define-key '(normal visual) 'global (kbd "h") 'evil-next-line)
 (evil-define-key '(normal visual) 'global (kbd "t") 'evil-previous-line)
 (evil-define-key '(normal visual) 'global (kbd "n") 'evil-forward-char)
+(evil-define-key '(normal visual) 'global (kbd "C-e") 'evil-scroll-page-down)
+(evil-define-key '(normal visual) 'global (kbd "C-g") 'evil-scroll-page-up)
 
 ;; basic
 (evil-define-key '(normal visual) 'global (kbd "SPC f") 'ido-find-file)
