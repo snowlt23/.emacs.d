@@ -14,18 +14,6 @@
 (run-with-idle-timer 5 t #'garbage-collect)
 (setq garbage-collection-messages t)
 
-(when (eq system-type 'gnu/linux)
-  (set-face-font 'default "Ricty Diminished-12:regular"))
-
-;; fallback font
-;(when (member "Symbola" (font-family-list))
-;  (set-fontset-font "fontset-default" nil
-;                    (font-spec :size 20 :name "Symbola")))
-;; font
-;(set-face-font 'default "Noto Sans-11:regular")
-;(set-frame-parameter (selected-frame) 'alpha '(85 85))
-                                        ;(add-to-list 'default-frame-alist '(alpha 85 85))
-
 ;; Startup message
 (setq inhibit-startup-message t)
 ;; ring bell
