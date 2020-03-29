@@ -90,6 +90,9 @@
 (setq org-agenda-files (list org-default-directory))
 (setq org-log-done 'time)
 
+(evil-set-initial-state 'org-agenda-mode 'normal)
+(add-hook 'after-init-hook 'org-agenda-list)
+
 (setq org-todo-keywords
   '((sequence "TODO(t)" "SOMEDAY(s)" "WAITING(w)" "|" "DONE(d)" "CANCELED(c)")))
 
