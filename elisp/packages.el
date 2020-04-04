@@ -17,8 +17,8 @@
 (evil-define-key '(normal visual) 'global (kbd "h") 'evil-next-line)
 (evil-define-key '(normal visual) 'global (kbd "t") 'evil-previous-line)
 (evil-define-key '(normal visual) 'global (kbd "n") 'evil-forward-char)
-(evil-define-key '(normal visual) 'global (kbd "C-e") 'evil-scroll-page-down)
-(evil-define-key '(normal visual) 'global (kbd "C-g") 'evil-scroll-page-up)
+(evil-define-key '(normal visual) 'global (kbd "H") 'evil-scroll-page-down)
+(evil-define-key '(normal visual) 'global (kbd "T") 'evil-scroll-page-up)
 
 ;; basic
 (evil-define-key '(normal visual) 'global (kbd "SPC f") 'ido-find-file)
@@ -40,6 +40,15 @@
 (evil-define-key 'normal 'global (kbd "SPC h") 'windmove-down)
 (evil-define-key 'normal 'global (kbd "SPC t") 'windmove-up)
 (evil-define-key 'normal 'global (kbd "SPC n") 'windmove-right)
+
+(use-package elscreen
+  :config
+  (setq elscreen-tab-display-kill-screen nil)
+  (setq elscreen-tab-display-control nil)
+  (evil-define-key 'normal 'global (kbd "C-t") 'elscreen-create)
+  (evil-define-key 'normal 'global (kbd "C-w") 'elscreen-kill)
+  (evil-define-key 'normal 'global (kbd "C-o") 'elscreen-previous)
+  (evil-define-key 'normal 'global (kbd "C-e") 'elscreen-next))
 
 (use-package ido
   :config
