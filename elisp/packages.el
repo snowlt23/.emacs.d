@@ -41,15 +41,6 @@
 (evil-define-key 'normal 'global (kbd "SPC t") 'windmove-up)
 (evil-define-key 'normal 'global (kbd "SPC n") 'windmove-right)
 
-(use-package elscreen
-  :config
-  (setq elscreen-tab-display-kill-screen nil)
-  (setq elscreen-tab-display-control nil)
-  (evil-define-key 'normal 'global (kbd "C-t") 'elscreen-create)
-  (evil-define-key 'normal 'global (kbd "C-w") 'elscreen-kill)
-  (evil-define-key 'normal 'global (kbd "C-o") 'elscreen-previous)
-  (evil-define-key 'normal 'global (kbd "C-e") 'elscreen-next))
-
 (use-package ido
   :config
   (setq ido-enable-flex-matching t)
@@ -100,7 +91,7 @@
 (setq org-log-done 'time)
 
 (evil-set-initial-state 'org-agenda-mode 'normal)
-(add-hook 'after-init-hook 'org-agenda-list)
+;;(add-hook 'after-init-hook 'org-agenda-list)
 
 (setq org-todo-keywords
   '((sequence "TODO(t)" "SOMEDAY(s)" "WAITING(w)" "|" "DONE(d)" "CANCELED(c)")))
@@ -228,5 +219,5 @@ same directory as the org-buffer and insert a link to this file."
           '(lambda ()
              (if (string= (file-name-extension (buffer-file-name)) ".org")
                  (org-agenda-to-appt))))
-(org-agenda-to-appt)
+;;(org-agenda-to-appt)
 (add-hook 'org-finalize-agenda-hook 'org-agenda-to-appt)
