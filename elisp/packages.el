@@ -138,6 +138,7 @@ same directory as the org-buffer and insert a link to this file."
 (evil-define-key 'normal 'global (kbd "SPC o c i") 'org-clock-in)
 (evil-define-key 'normal 'global (kbd "SPC o c o") 'org-clock-out)
 (evil-define-key 'normal 'global (kbd "SPC o c r") 'org-clock-report)
+(evil-define-key 'normal 'global (kbd "SPC o m") 'org-refile)
 
 (setq org-link-abbrev-alist
       `(("image" . ,(concat org-default-directory "images/"))
@@ -157,7 +158,6 @@ same directory as the org-buffer and insert a link to this file."
   (org-level-5 ((t (:inherit outline-5 :height 1.0)))))
 
 (use-package deft
-  :bind ("C-c d" . deft)
   :commands (deft)
   :init
   (setq deft-directory org-default-directory
@@ -165,7 +165,8 @@ same directory as the org-buffer and insert a link to this file."
         deft-default-extension "org"
         deft-use-filename-as-title t
         deft-use-filter-string-for-filename t
-        deft-recursive t))
+        deft-recursive t)
+  (evil-define-key 'normal 'global (kbd "SPC o s") 'deft))
 
 (defun my-org-download-link-format-function (filename)
   "The default function of `org-download-link-format-function'."
